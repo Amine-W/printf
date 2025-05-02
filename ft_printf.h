@@ -14,7 +14,15 @@
 # define FT_PRINTF_H
 
 # include <stdarg.h>
+# include <unistd.h>
 
-int ft_printf(const char *str, ...);
+# define MAJHEX "0123456789ABCDEF"
+# define MINHEX "0123456789abcdef"
+
+int	ft_printf(const char *str, ...);
+int	check(va_list list, const char *str);
+void	ft_putchar(char c);
+int	ft_putnbr(int n);
+int	ft_putstr(char *str);
 
 #endif
