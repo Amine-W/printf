@@ -1,26 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_putstr.c                                        :+:      :+:    :+:   */
+/*   ft_puthex_upper.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: amwahab <amwahab@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/05/02 15:31:33 by amwahab           #+#    #+#             */
-/*   Updated: 2025/05/02 20:42:22 by amwahab          ###   ########.fr       */
+/*   Created: 2025/05/02 20:21:43 by amwahab           #+#    #+#             */
+/*   Updated: 2025/05/02 20:38:32 by amwahab          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-int	ft_putstr(char *str)
+int	ft_puthex_upper(unsigned long n)
 {
-	int	i;
+	char	*hex_digits;
+	int		count;
 
-	i = 0;
-	while (str[i])
-	{
-		write(1, &str[i], 1);
-		i++;
-	}
-	return (i);
+	hex_digits = "0123456789ABCDEF";
+	count = 0;
+	if (n >= 16)
+		count += ft_puthex(n / 16);
+	ft_putchar(hex_digits[n % 16]);
+	count++;
+	return (count);
 }

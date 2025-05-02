@@ -6,33 +6,34 @@
 #    By: amwahab <amwahab@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/05/02 17:17:56 by amwahab           #+#    #+#              #
-#    Updated: 2025/05/02 19:46:22 by amwahab          ###   ########.fr        #
+#    Updated: 2025/05/02 20:31:28 by amwahab          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-gcc = cc
+CC = cc
 FLAGS = -Wall -Wextra -Werror
 
-NAME = libftprtinf.a
+NAME = libftprintf.a
 
-SRC = ft_printf.c /
-		check.c /
-		ft_putchar.c /
-		ft_putnbr.c /
-		ft_putstr.c /
-		ft_unsigned_putnbr
+SRC = ft_printf.c \
+		ft_check.c \
+		ft_putchar.c \
+		ft_putnbr.c \
+		ft_putstr.c \
+		ft_unsigned_putnbr.c \
+		ft_adress.c \
+		ft_puthex.c \
+		ft_puthex_upper.c
 
-OBJS	= $(SRCS:.c=.o)
-OBJS_BONUS	= $(SRCS_BONUS:.c=.o)
+OBJS = $(SRC:.c=.o)
 
 %.o: %.c
-	$(CC) $(CFLAGS) -c $< -o $@
-	
+	$(CC) $(FLAGS) -c $< -o $@
+
 all: $(NAME)
 
 $(NAME): $(OBJS)
 	ar rcs $(NAME) $(OBJS)
-	@rm -f $(OBJS)
 
 clean:
 	rm -f $(OBJS)
@@ -42,4 +43,4 @@ fclean: clean
 
 re: fclean all
 
-.PHONY: all re fclean clean bonus
+.PHONY: all re fclean clean

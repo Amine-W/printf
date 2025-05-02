@@ -16,10 +16,14 @@
 # include <stdarg.h>
 # include <unistd.h>
 
-int	ft_printf(const char *str, ...);
-int	check(va_list list, const char *str);
+int	ft_check(va_list list, const char *str);
 int	ft_putchar(char c);
 int	ft_putnbr(int n);
 int	ft_putstr(char *str);
+int	ft_unsigned_putnbr(unsigned int n);
+int	ft_adress(void *ptr);
+int	ft_adress(void *ptr);
+int	ft_puthex(unsigned long n);
+int	ft_puthex_upper(unsigned long n);
 
 #endif
