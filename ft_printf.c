@@ -6,7 +6,7 @@
 /*   By: amwahab <amwahab@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/30 12:08:23 by amwahab           #+#    #+#             */
-/*   Updated: 2025/05/02 17:30:38 by amwahab          ###   ########.fr       */
+/*   Updated: 2025/05/02 19:35:31 by amwahab          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,11 +14,13 @@
 # include <unistd.h>
 #include <stdio.h>
 
-int	check(va_list list, const char *str);
+int	ft_check(va_list list, const char *str);
 int	ft_putchar(char c);
 int	ft_putnbr(int n);
 int	ft_putstr(char *str);
 int	ft_unsigned_putnbr(unsigned int n);
+int	ft_adress(void *ptr);
+int	ft_adress(void *ptr);
 
 int ft_printf(const char *str, ...)
 {
@@ -33,7 +35,7 @@ int ft_printf(const char *str, ...)
 	{
 		if (str[i] == '%')
 		{
-			count += check(list, &str[i]);
+			count += ft_check(list, &str[i]);
 			i++;
 		}
 		else
@@ -60,7 +62,7 @@ int	ft_check(va_list list, const char *str)
 	else if(str[1] == 'u')
 		count += ft_unsigned_putnbr(va_arg(list, unsigned int));
 	else if(str[1] == 'p')
-		count += ft_adress(va_arg(list, int));
+		count += ft_adress(va_arg(list, void*));
 	return(count);
 }
 
@@ -108,16 +110,27 @@ int	ft_putnbr(int n)
 	return(count);
 }
 
+int	ft_puthex(unsigned long n)
+{
+	char	*hex_digits = "0123456789abcdef";
+	int		count = 0;
+
+	if (n >= 16)
+		count += ft_puthex(n / 16);
+	ft_putchar(hex_digits[n % 16]);
+	count++;
+	return (count);
+}
+
 int	ft_adress(void *ptr)
 {
-	char	*hexa;
-	int		count;
+	int	count;
 
-	if (n > 15)
-	{
-		count += ft_adress(n/16); 
-	}
-	count = 0;
+	if (!ptr)
+		return (ft_putstr("0x0"));
+	count = ft_putstr("0x");
+	count += ft_puthex((unsigned long)ptr);
+	return (count);
 }
 
 int	ft_unsigned_putnbr(unsigned int n)
@@ -166,8 +179,15 @@ int	main(void)
 	
 	//UNSIGNED INT TEST
 	
-	count = ft_printf("prrprrpatapim: test[%u]\n", -12);
+	// count = ft_printf("prrprrpatapim: test[%u]\n", -12);
+	// ft_printf("[%i]\n", count);
+	// count = printf("prrprrpatapim: test[%u]\n", -12);
+	// ft_printf("[%i]\n", count);
+
+	// void *
+
+	count = ft_printf("prrprrpatapim: test[%p]\n", s);
 	ft_printf("[%i]\n", count);
-	count = printf("prrprrpatapim: test[%u]\n", -12);
+	count = printf("prrprrpatapim: test[%p]\n", s);
 	ft_printf("[%i]\n", count);
 }
