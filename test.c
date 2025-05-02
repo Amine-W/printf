@@ -21,9 +21,9 @@ int main()
     // testit(0, 0xFFFFFFFF);  1st problem: 0xffffffff is not an int
     // testit(1, NULL);        2nd problem: NULL is not a char*
 	testit(3, 6, 8, 4);
-	int	i
-	unsigned int i;
+	int	i;
 	
+
 	char *str = "Bonjour ceci est un test";
 	i = 0;
 }

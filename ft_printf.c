@@ -6,7 +6,7 @@
 /*   By: amwahab <amwahab@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/30 12:08:23 by amwahab           #+#    #+#             */
-/*   Updated: 2025/05/02 19:35:31 by amwahab          ###   ########.fr       */
+/*   Updated: 2025/05/02 19:43:13 by amwahab          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,7 @@ int	ft_putstr(char *str);
 int	ft_unsigned_putnbr(unsigned int n);
 int	ft_adress(void *ptr);
 int	ft_adress(void *ptr);
+int	ft_puthex(unsigned long n);
 
 int ft_printf(const char *str, ...)
 {
@@ -63,6 +64,8 @@ int	ft_check(va_list list, const char *str)
 		count += ft_unsigned_putnbr(va_arg(list, unsigned int));
 	else if(str[1] == 'p')
 		count += ft_adress(va_arg(list, void*));
+	else if(str[1] == 'x')
+		count += ft_puthex(va_arg(list, unsigned long int));
 	return(count);
 }
 
@@ -186,8 +189,16 @@ int	main(void)
 
 	// void *
 
-	count = ft_printf("prrprrpatapim: test[%p]\n", s);
-	ft_printf("[%i]\n", count);
-	count = printf("prrprrpatapim: test[%p]\n", s);
-	ft_printf("[%i]\n", count);
+// 	count = ft_printf("prrprrpatapim: test[%p]\n", s);
+// 	ft_printf("[%i]\n", count);
+// 	count = printf("prrprrpatapim: test[%p]\n", s);
+// 	ft_printf("[%i]\n", count);
+
+	// hexa lower
+
+	// count = ft_printf("prrprrpatapim: test[%x]\n", 15);
+	// ft_printf("[%i]\n", count);
+	// count = printf("prrprrpatapim: test[%x]\n", 15);
+	// ft_printf("[%i]\n", count);
+	
 }
