@@ -10,7 +10,7 @@ void testit (int n, ...)
 	i = 0;
 	while(i < n)
 	{
-		printf("%d ", va_arg(argptr, int));
+		printf("%d\n", va_arg(argptr, int));
 		i++;
 	}
 	va_end(argptr);
