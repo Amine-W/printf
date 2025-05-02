@@ -6,12 +6,14 @@
 #    By: amwahab <amwahab@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/05/02 17:17:56 by amwahab           #+#    #+#              #
-#    Updated: 2025/05/02 17:19:20 by amwahab          ###   ########.fr        #
+#    Updated: 2025/05/02 19:46:22 by amwahab          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 gcc = cc
 FLAGS = -Wall -Wextra -Werror
+
+NAME = libftprtinf.a
 
 SRC = ft_printf.c /
 		check.c /

@@ -6,7 +6,7 @@
 /*   By: amwahab <amwahab@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/30 12:08:23 by amwahab           #+#    #+#             */
-/*   Updated: 2025/05/02 19:43:13 by amwahab          ###   ########.fr       */
+/*   Updated: 2025/05/02 20:16:33 by amwahab          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,7 @@ int	ft_unsigned_putnbr(unsigned int n);
 int	ft_adress(void *ptr);
 int	ft_adress(void *ptr);
 int	ft_puthex(unsigned long n);
+int	ft_puthex_upper(unsigned long n);
 
 int ft_printf(const char *str, ...)
 {
@@ -56,6 +57,8 @@ int	ft_check(va_list list, const char *str)
 	count = 0;
 	if(str[1] == 'c')
 		count += ft_putchar(va_arg(list, int));
+	else if(str[1] == '%')
+		count += ft_putchar('%');
 	else if(str[1] == 's')
 		count += ft_putstr(va_arg(list, char*));
 	else if(str[1] == 'd' || str[1] == 'i')
@@ -66,6 +69,8 @@ int	ft_check(va_list list, const char *str)
 		count += ft_adress(va_arg(list, void*));
 	else if(str[1] == 'x')
 		count += ft_puthex(va_arg(list, unsigned long int));
+	else if(str[1] == 'X')
+		count += ft_puthex_upper(va_arg(list, unsigned long int));
 	return(count);
 }
 
@@ -116,6 +121,18 @@ int	ft_putnbr(int n)
 int	ft_puthex(unsigned long n)
 {
 	char	*hex_digits = "0123456789abcdef";
+	int		count = 0;
+
+	if (n >= 16)
+		count += ft_puthex(n / 16);
+	ft_putchar(hex_digits[n % 16]);
+	count++;
+	return (count);
+}
+
+int	ft_puthex_upper(unsigned long n)
+{
+	char	*hex_digits = "0123456789ABCDEF";
 	int		count = 0;
 
 	if (n >= 16)
@@ -189,10 +206,10 @@ int	main(void)
 
 	// void *
 
-// 	count = ft_printf("prrprrpatapim: test[%p]\n", s);
-// 	ft_printf("[%i]\n", count);
-// 	count = printf("prrprrpatapim: test[%p]\n", s);
-// 	ft_printf("[%i]\n", count);
+	// 	count = ft_printf("prrprrpatapim: test[%p]\n", s);
+	// 	ft_printf("[%i]\n", count);
+	// 	count = printf("prrprrpatapim: test[%p]\n", s);
+	// 	ft_printf("[%i]\n", count);
 
 	// hexa lower
 
@@ -200,5 +217,21 @@ int	main(void)
 	// ft_printf("[%i]\n", count);
 	// count = printf("prrprrpatapim: test[%x]\n", 15);
 	// ft_printf("[%i]\n", count);
+	
+	// hexa upper
+
+	// count = ft_printf("prrprrpatapim: test[%X]\n", 15);
+	// ft_printf("[%i]\n", count);
+	// count = printf("prrprrpatapim: test[%X]\n", 15);
+	// ft_printf("[%i]\n", count);
+
+	// %
+
+	count = ft_printf("prrprrpatapim: test[%%]\n");
+	ft_printf("[%i]\n", count);
+	count = printf("prrprrpatapim: test[%%]\n");
+	ft_printf("[%i]\n", count);
+	
+	
 	
 }
