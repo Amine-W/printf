@@ -19,6 +19,8 @@ int	ft_check(va_list list, const char *str)
 	count = 0;
 	if (str[1] == 'c')
 		count += ft_putchar(va_arg(list, int));
+	else if (str[1] == '%')
+		count += ft_putchar('%');
 	else if (str[1] == 's')
 		count += ft_putstr(va_arg(list, char *));
 	else if (str[1] == 'd' || str[1] == 'i')
@@ -27,5 +29,9 @@ int	ft_check(va_list list, const char *str)
 		count += ft_unsigned_putnbr(va_arg(list, unsigned int));
 	else if (str[1] == 'p')
 		count += ft_adress(va_arg(list, void *));
+	else if (str[1] == 'x')
+		count += ft_puthex(va_arg(list, unsigned int));
+	else if (str[1] == 'X')
+		count += ft_puthex_upper(va_arg(list, unsigned int));
 	return (count);
 }

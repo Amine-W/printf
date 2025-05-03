@@ -6,7 +6,7 @@
 /*   By: amwahab <amwahab@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/02 20:23:46 by amwahab           #+#    #+#             */
-/*   Updated: 2025/05/02 20:41:56 by amwahab          ###   ########.fr       */
+/*   Updated: 2025/05/03 13:16:55 by amwahab          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,6 @@ int	ft_puthex(unsigned long n)
 	count = 0;
 	if (n >= 16)
 		count += ft_puthex(n / 16);
-	ft_putchar(hex_digits[n % 16]);
-	count++;
+	count += ft_putchar(hex_digits[n % 16]);
 	return (count);
 }
